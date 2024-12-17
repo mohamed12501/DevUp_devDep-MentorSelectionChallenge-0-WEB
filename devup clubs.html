@@ -17,36 +17,14 @@
     </header>
 
     <!-- Main Content -->
-    <main class="flex gap-10 flex-wrap my-14 mx-auto items-center justify-center grow">
-        <!-- Academic and Technical Clubs -->
-        <div class="flex justify-center bg-white rounded-lg p-2 items-center border-green-300 border-[5px] flex-col h-[600px] w-[370px] transform transition-transform hover:-translate-y-2 shadow hover:shadow-2xl">
-            <img class="h-[70%] w-full rounded-t-lg" src="d.jpg" alt="dv">
-            <div class="h-auto min-h-[30%] text-green-600 w-full items-center p-2 justify-center text-center bg-white">
-                <h1 class="text-[25px]">Dev UP</h1>
-                <p class="text-[18px]">Learn coding, app development, and technologies with peers and experts.</p>
-            </div>    
-        </div>
-        <div class="flex justify-center bg-white rounded-lg p-2 items-center border-green-300 border-[5px] flex-col h-[600px] w-[370px] transform transition-transform hover:-translate-y-2 shadow hover:shadow-2xl">
-            <img class="h-[70%] w-full rounded-t-lg" src="i.jpg" alt="IEEE">
-            <div class="h-auto min-h-[30%] text-green-600 w-full items-center p-2 justify-center text-center bg-white">
-                <h1 class="text-[25px]">IEEE Student Branch</h1>
-                <p class="text-[18px]">Join engineering, tech workshops, and global IEEE initiatives.</p>
-            </div>    
-        </div>
-
-        <!-- Cultural Clubs -->
-        <div class="flex justify-center bg-white rounded-lg p-2 items-center border-green-300 border-[5px] flex-col h-[600px] w-[370px] transform transition-transform hover:-translate-y-2 shadow hover:shadow-2xl">
-            <img class="h-[70%] w-full rounded-t-lg" src="t.jpg" alt="Theater Club">
-            <div class="h-auto min-h-[30%] text-green-600 w-full items-center p-2 justify-center text-center bg-white">
-                <h1 class="text-[25px]">Théâtre UMBB</h1>
-                <p class="text-[18px]">Showcase your acting and stage skills in cultural events.</p>
-            </div>    
-        </div>
-
-        <!-- Environmental and Social Clubs -->
-       
+    <main id="club-container" class="flex gap-10 flex-wrap my-14 mx-auto items-center justify-center grow">
+        <!-- Club cards will be dynamically generated here -->
     </main>
-<a class=" right-9 top-[500px] z-[1000] fixed transform transition-transform hover:-translate-y-2" href=""><img class="rounded-full h-[100px] w-[100px] "() src="jk.png" alt=""></a>
+
+    <!-- Scroll-to-top Button -->
+    <a class="right-9 top-[500px] z-[1000] fixed transform transition-transform hover:-translate-y-2" href="#">
+        <img class="rounded-full h-[100px] w-[100px]" src="jk.png" alt="Scroll to top">
+    </a>
     
     <!-- Footer -->
     <footer class="w-full bg-green-900 flex flex-col gap-10 p-5 items-center justify-center">
@@ -56,5 +34,80 @@
             <a href="#"><img class="h-10 w-10 rounded-full" src="téléchargement.png" alt="Facebook"></a>
         </div>
     </footer>
+
+    <!-- JavaScript to Dynamically Generate Content -->
+    <script>
+        // Data for the clubs
+        const clubs = [
+            {
+                name: "Dev UP",
+                description: "Learn coding, app development, and technologies with peers and experts.",
+                image: "d.jpg",
+                alt: "Dev UP Logo"
+            },
+            {
+                name: "IEEE Student Branch",
+                description: "Join engineering, tech workshops, and global IEEE initiatives.",
+                image: "i.jpg",
+                alt: "IEEE Logo"
+            },
+            {
+                name: "Théâtre UMBB",
+                description: "Showcase your acting and stage skills in cultural events.",
+                image: "t.jpg",
+                alt: "Theater Club"
+            },
+           
+        ];
+
+        // Get the container where clubs will be displayed
+        const clubContainer = document.getElementById('club-container');
+
+        // Function to create a club card
+        function createClubCard(club) {
+            // Create the card container
+            const card = document.createElement('div');
+            card.className = "flex justify-center bg-white rounded-lg p-2 items-center border-green-300 border-[5px] flex-col h-[600px] w-[370px] transform transition-transform hover:-translate-y-2 shadow hover:shadow-2xl";
+
+            // Create and append the image
+            const image = document.createElement('img');
+            image.src = club.image;
+            image.alt = club.alt;
+            image.className = "h-[70%] w-full rounded-t-lg";
+            card.appendChild(image);
+
+            // Create and append the text container
+            const textContainer = document.createElement('div');
+            textContainer.className = "h-auto min-h-[30%] text-green-600 w-full items-center p-2 justify-center text-center bg-white";
+            
+            const title = document.createElement('h1');
+            title.className = "text-[25px]";
+            title.textContent = club.name;
+
+            const description = document.createElement('p');
+            description.className = "text-[18px]";
+            description.textContent = club.description;
+
+            // Append title and description to text container
+            textContainer.appendChild(title);
+            textContainer.appendChild(description);
+
+            // Append text container to the card
+            card.appendChild(textContainer);
+
+            return card;
+        }
+
+        // Generate and display all club cards
+        function displayClubs() {
+            clubs.forEach(club => {
+                const clubCard = createClubCard(club);
+                clubContainer.appendChild(clubCard);
+            });
+        }
+
+        // Call the function to display clubs
+        displayClubs();
+    </script>
 </body>
 </html>
