@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Plumber's Library</title>
+</head>
+<body class="h-full bg-gray-100 flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="flex bg-blue-600 gap-2 items-center p-2 justify-around shadow-xl">
+        <div class="flex font-[500] gap-6 items-center p-4">
+            <img class="h-[80px] w-[80px] rounded-full" src="dim.jpg" alt="Library Logo">
+            <span class="text-white text-[35px]">Plumber's Library</span>
+        </div>
+        <span class="text-white text-[25px] font-[500]">Contact : +21321321321</span>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex gap-10 flex-wrap my-14 mx-auto items-center justify-center grow" id="book-container">
+        <!-- Books will be dynamically injected here -->
+    </main>
+
+    <!-- WhatsApp Bubble -->
+    <a class="right-9 top-[500px] z-[1000] fixed transform transition-transform hover:-translate-y-2" href="https://wa.me/21321321321">
+        <img class="rounded-full h-[100px] w-[100px]" src="what.jpg" alt="WhatsApp Bubble">
+    </a>
+
+    <!-- Footer -->
+    <footer class="w-full bg-blue-900 flex flex-col gap-10 p-5 items-center justify-center">
+        <span class="text-white text-[25px]">© 2024 Plumber's Library. Tous droits réservés.</span>
+        <div class="flex gap-4">
+            <a href="#"><img class="h-10 w-10 rounded-full" src="insta.jpg" alt="Instagram"></a>
+            <a href="#"><img class="h-10 w-10 rounded-full" src="asset\facebook.png" alt="Facebook"></a>
+        </div>
+    </footer>
+
+    <!-- JavaScript to Dynamically Add Book Components -->
+    <script>
+        const plumberBooks = [
+            { title: "Plumbing 101", description: "An essential guide for beginners in plumbing.", image: "plumbing1.jpg" },
+            { title: "Pipe Installation Manual", description: "Learn the basics of pipe installation and maintenance.", image: "plumbing2.jpg" },
+            { title: "Water Supply Systems", description: "A comprehensive overview of water supply systems and design.", image: "plumbing3.jpg" },
+            { title: "Drainage Solutions", description: "Advanced techniques for fixing drainage issues.", image: "plumbing4.jpg" },
+            { title: "Plumbing Code Handbook", description: "A detailed reference to plumbing regulations and codes.", image: "plumbing5.jpg" },
+            { title: "DIY Plumbing Repairs", description: "Fix plumbing problems at home with simple solutions.", image: "plumbing6.jpg" },
+        ];
+
+        const bookContainer = document.getElementById("book-container");
+
+        plumberBooks.forEach(book => {
+            const bookCard = document.createElement("div");
+            bookCard.className = "flex justify-center bg-white rounded-lg p-2 items-center border-blue-300 border-[5px] flex-col h-[550px] w-[350px] transform transition-transform hover:-translate-y-2 shadow hover:shadow-2xl";
+
+            bookCard.innerHTML = `
+                <img class="h-[70%] w-full rounded-t-lg" src="${book.image}" alt="${book.title}">
+                <div class="h-[auto] min-h-[30%] text-blue-600 w-full items-center p-2 justify-center text-center bg-white">
+                    <h1 class="text-[25px] font-bold">${book.title}</h1>
+                    <p class="text-[18px]">${book.description}</p>
+                </div>
+            `;
+            bookContainer.appendChild(bookCard);
+        });
+    </script>
+
+</body>
+</html>
